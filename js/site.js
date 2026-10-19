@@ -29,22 +29,10 @@
     return file + next.search + next.hash;
   }
 
-  function applySeasonLabels(lang) {
-    if (!window.GCPCSeason) return;
-    var season = html.getAttribute("data-season") || window.GCPCSeason.current();
-    var names = window.GCPCSeason.names[season];
-    var alts = window.GCPCSeason.alts[season];
-    var src = window.GCPCSeason.src(season);
-    document.querySelectorAll(".hero-art, .season-band").forEach(function (el) {
-      el.style.backgroundImage = "url(\"" + src + "\")";
-    });
-    document.querySelectorAll("[data-season-name]").forEach(function (el) {
-      if (names) el.textContent = names[lang] || names.ko;
-    });
-    document.querySelectorAll("[data-season-alt]").forEach(function (el) {
-      if (!alts) return;
-      el.setAttribute("aria-label", lang === "en" ? alts.en : alts.ko);
-    });
+  function applySeasonLabels() {
+    if (window.GCPCSeason && typeof window.GCPCSeason.refresh === "function") {
+      window.GCPCSeason.refresh();
+    }
   }
 
   function setLang(lang) {
@@ -75,7 +63,7 @@
       if (!/\.html($|\?|#)/.test(href) && href !== "./" && href !== "index.html") return;
       link.setAttribute("href", localHref(href, html.lang));
     });
-    applySeasonLabels(html.lang);
+    applySeasonLabels();
   }
 
   function closeNav() {
