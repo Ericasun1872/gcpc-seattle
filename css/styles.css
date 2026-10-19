@@ -315,6 +315,31 @@ main {
   opacity: 1;
 }
 
+.hero-logo {
+  position: absolute;
+  z-index: 3;
+  top: 1.05rem;
+  right: max(1rem, calc((100% - min(var(--content), calc(100% - 2rem))) / 2));
+  width: min(13.25rem, 32vw);
+  height: min(13.25rem, 32vw);
+  margin: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  box-shadow: 0 10px 28px rgba(58, 51, 46, 0.1);
+}
+
+.hero-logo img {
+  width: 118%;
+  height: 118%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 16%;
+  mix-blend-mode: multiply;
+}
+
 .hero-panel {
   position: relative;
   z-index: 2;
@@ -331,11 +356,54 @@ main {
 }
 
 .hero-card h1,
-.hero-card .english-name,
-.hero-card .lede,
-.hero-card .verse p,
 .hero-card .season-caption {
   text-shadow: 0 1px 18px rgba(255, 250, 244, 0.92), 0 0 3px rgba(255, 250, 244, 0.88);
+}
+
+.hero-read {
+  max-width: 38rem;
+  margin: 0 0 1.35rem -0.45rem;
+  padding: 0.55rem 1.35rem 0.75rem 0.85rem;
+  border-radius: 1.6rem;
+  background:
+    radial-gradient(
+      120% 90% at 28% 46%,
+      color-mix(in srgb, var(--paper) 48%, transparent) 0%,
+      color-mix(in srgb, var(--paper) 22%, transparent) 62%,
+      transparent 100%
+    );
+  backdrop-filter: blur(5px) saturate(1.03);
+  -webkit-backdrop-filter: blur(5px) saturate(1.03);
+  box-shadow: none;
+}
+
+.hero-read .english-name,
+.hero-read .verse p,
+.hero-read .verse cite,
+.hero-read .lede {
+  text-shadow: 0 1px 10px rgba(255, 250, 244, 0.95), 0 0 2px rgba(255, 250, 244, 0.9);
+}
+
+.hero-read .english-name {
+  margin: 0 0 0.85rem;
+  color: #2a241f;
+}
+
+.hero-read .verse {
+  margin: 0 0 0.85rem;
+}
+
+.hero-read .verse p {
+  color: #241f2c;
+}
+
+.hero-read .verse cite {
+  color: #3d352f;
+}
+
+.hero-read .lede {
+  margin: 0;
+  color: #2c2621;
 }
 
 .hero-card .btn-ghost {
@@ -736,6 +804,13 @@ html[data-season="winter"] .season-caption {
 }
 
 @media (max-width: 700px) {
+  .hero-logo {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 7.1rem;
+    height: 7.1rem;
+  }
+
   .hero-seasonal {
     align-items: end;
     min-height: 38rem;
@@ -748,8 +823,13 @@ html[data-season="winter"] .season-caption {
   }
 
   .hero-panel {
-    padding-top: 3.2rem;
+    padding-top: 8.4rem;
     padding-bottom: 1.2rem;
+  }
+
+  .hero-read {
+    margin-left: -0.25rem;
+    padding: 0.55rem 0.85rem 0.75rem 0.7rem;
   }
 
   .worship-bar-desktop {
