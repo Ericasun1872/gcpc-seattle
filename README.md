@@ -18,7 +18,7 @@ python3 -m http.server 8080
 
 Then open `http://127.0.0.1:8080/`.
 
-Seasonal watercolor follows the calendar (spring / summer / autumn / winter). Preview a season with `?season=winter`.
+The home hero watercolor is a light watermark over the painting (no heavy white card). Seasons cycle slowly through spring → summer → autumn → winter. Pin one with `?season=spring|summer|autumn|winter`.
 
 ## Publish
 

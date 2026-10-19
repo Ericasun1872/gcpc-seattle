@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preload" as="image" href="img/seasons/spring.jpg">
+  <link rel="preload" as="image" href="img/seasons/summer.jpg">
+  <link rel="preload" as="image" href="img/seasons/autumn.jpg">
+  <link rel="preload" as="image" href="img/seasons/winter.jpg">
   <script src="js/season.js"></script>
   <script type="application/ld+json">
   {
@@ -76,7 +80,11 @@
 
   <main id="main">
     <section class="hero hero-seasonal">
-      <div class="hero-art" role="img" data-season-alt aria-label="수채화: 시애틀 가을, 국화와 복숭아빛 장미"></div>
+      <div class="hero-art-stack" aria-hidden="true">
+        <div class="hero-art" data-season-layer></div>
+        <div class="hero-art" data-season-layer></div>
+      </div>
+      <p class="visually-hidden" data-season-alt>수채화: 시애틀 가을, 국화와 복숭아빛 장미</p>
       <div class="hero-panel">
         <div class="wrap">
           <div class="hero-card">

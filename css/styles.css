@@ -269,56 +269,101 @@ main {
 
 .hero-seasonal {
   position: relative;
-  min-height: min(78vh, 44rem);
+  min-height: min(92vh, 52rem);
   display: grid;
   align-items: end;
   padding: 0;
   overflow: hidden;
 }
 
-.hero-art,
+.hero-art-stack,
 .season-band {
   background-image: var(--season-image);
   background-size: cover;
-  background-position: center 42%;
+  background-position: center 40%;
+}
+
+.hero-art-stack {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-art-stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 62%,
+    color-mix(in srgb, var(--cream) 14%, transparent) 100%
+  );
 }
 
 .hero-art {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity 2.4s ease-in-out;
+  background-size: cover;
+  background-position: center 40%;
 }
 
-.hero-art::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--cream) 55%, transparent) 0%, color-mix(in srgb, var(--cream) 10%, transparent) 48%, transparent 70%),
-    linear-gradient(180deg, color-mix(in srgb, var(--cream) 8%, transparent) 0%, color-mix(in srgb, var(--cream) 22%, transparent) 100%);
+.hero-art.is-active {
+  opacity: 1;
 }
 
 .hero-panel {
   position: relative;
-  z-index: 1;
-  padding: 4.2rem 0 3rem;
+  z-index: 2;
+  padding: 5rem 0 3.2rem;
 }
 
 .hero-card {
-  max-width: 40rem;
-  background: color-mix(in srgb, var(--paper) 96%, transparent);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.8rem 1.8rem 1.6rem;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
+  max-width: 38rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.hero-card h1,
+.hero-card .english-name,
+.hero-card .lede,
+.hero-card .verse p,
+.hero-card .season-caption {
+  text-shadow: 0 1px 18px rgba(255, 250, 244, 0.92), 0 0 3px rgba(255, 250, 244, 0.88);
+}
+
+.hero-card .btn-ghost {
+  background: color-mix(in srgb, var(--paper) 40%, transparent);
 }
 
 .season-caption {
   margin: 0 0 0.85rem;
   color: var(--gold);
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+}
+
+html[data-season="spring"] .season-caption {
+  color: #c47a90;
+}
+
+html[data-season="summer"] .season-caption {
+  color: #7e9554;
+}
+
+html[data-season="autumn"] .season-caption {
+  color: #c49a62;
+}
+
+html[data-season="winter"] .season-caption {
+  color: #9a7d58;
 }
 
 .season-band {
@@ -682,11 +727,7 @@ main {
   }
 
   .hero-seasonal {
-    min-height: 36rem;
-  }
-
-  .hero-card {
-    padding: 1.35rem 1.2rem 1.2rem;
+    min-height: 38rem;
   }
 
   .season-band {
@@ -696,23 +737,18 @@ main {
 
 @media (max-width: 700px) {
   .hero-seasonal {
-    align-items: start;
-    min-height: auto;
+    align-items: end;
+    min-height: 38rem;
     padding-bottom: 5.25rem;
   }
 
-  .hero-art::after {
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      transparent 42%,
-      color-mix(in srgb, var(--cream) 35%, transparent) 72%,
-      color-mix(in srgb, var(--cream) 70%, transparent) 100%
-    );
+  .hero-art-stack,
+  .hero-art {
+    background-position: 22% 58%;
   }
 
   .hero-panel {
-    padding-top: 8.5rem;
+    padding-top: 3.2rem;
     padding-bottom: 1.2rem;
   }
 
@@ -756,5 +792,9 @@ main {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .hero-art {
+    transition: none;
   }
 }
