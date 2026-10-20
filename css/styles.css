@@ -320,24 +320,17 @@ main {
   z-index: 3;
   top: 1.05rem;
   right: max(1rem, calc((100% - min(var(--content), calc(100% - 2rem))) / 2));
-  width: min(13.25rem, 32vw);
-  height: min(13.25rem, 32vw);
+  width: min(15rem, 36vw);
   margin: 0;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  box-shadow: 0 10px 28px rgba(58, 51, 46, 0.1);
+  background: none;
+  border: 0;
+  box-shadow: none;
 }
 
 .hero-logo img {
-  width: 118%;
-  height: 118%;
-  max-width: none;
-  object-fit: cover;
-  object-position: 50% 16%;
-  mix-blend-mode: multiply;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .hero-panel {
@@ -807,8 +800,7 @@ html[data-season="winter"] .season-caption {
   .hero-logo {
     top: 0.75rem;
     right: 0.75rem;
-    width: 7.1rem;
-    height: 7.1rem;
+    width: 8.4rem;
   }
 
   .hero-seasonal {
