@@ -13,6 +13,7 @@
   --radius: 18px;
   --font: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, sans-serif;
   --serif: "Noto Serif KR", "Source Serif 4", Georgia, serif;
+  --title-gothic: "Gothic A1", "Noto Sans KR", "Pretendard Variable", sans-serif;
   --content: 70rem;
   --header-h: 4.25rem;
   --season-image: url("../img/seasons/autumn.jpg");
@@ -152,9 +153,11 @@ a:hover {
 }
 
 .wordmark-ko {
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  font-family: var(--title-gothic);
+  font-weight: 800;
+  font-size: 1.18rem;
+  letter-spacing: -0.05em;
+  color: var(--navy-deep);
 }
 
 .wordmark-en {
@@ -216,15 +219,17 @@ a:hover {
 
 .site-nav {
   display: flex;
-  gap: 0.15rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.1rem;
 }
 
 .site-nav a {
   text-decoration: none;
   color: var(--navy);
   font-weight: 600;
-  font-size: 0.92rem;
-  padding: 0.45rem 0.7rem;
+  font-size: 0.88rem;
+  padding: 0.45rem 0.58rem;
   border-radius: 999px;
 }
 
@@ -348,9 +353,15 @@ main {
   box-shadow: none;
 }
 
-.hero-card h1,
 .hero-card .season-caption {
   text-shadow: 0 1px 18px rgba(255, 250, 244, 0.92), 0 0 3px rgba(255, 250, 244, 0.88);
+}
+
+.hero-card h1 {
+  text-shadow:
+    0 0 2px rgba(255, 250, 244, 1),
+    0 1px 14px rgba(255, 250, 244, 0.96),
+    0 2px 28px rgba(255, 250, 244, 0.88);
 }
 
 .hero-read {
@@ -449,13 +460,13 @@ html[data-season="winter"] .season-caption {
 }
 
 .hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(2.1rem, 6vw, 3.6rem);
-  line-height: 1.2;
+  font-family: var(--title-gothic);
+  font-size: clamp(2.35rem, 6.5vw, 3.9rem);
+  line-height: 1.15;
   margin: 0 0 0.4rem;
-  color: var(--navy);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  color: #1c1724;
+  font-weight: 900;
+  letter-spacing: -0.06em;
 }
 
 .english-name {
@@ -669,6 +680,96 @@ html[data-season="winter"] .season-caption {
   text-decoration: none;
 }
 
+.notice-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1.2rem;
+}
+
+.notice-filters button {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--navy);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.42rem 0.9rem;
+  min-height: 2.4rem;
+  cursor: pointer;
+}
+
+.notice-filters button[aria-pressed="true"] {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+
+.notice-list {
+  display: grid;
+  gap: 1rem;
+  max-width: 44rem;
+}
+
+.notice-kind {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.notice-card,
+.notice-empty {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.4rem 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.notice-card-sample {
+  background: #efe4d2;
+  border-color: rgba(154, 120, 68, 0.28);
+  box-shadow: none;
+}
+
+.notice-badge {
+  display: inline-block;
+  margin: 0 0 0.65rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--cream);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.notice-meta {
+  margin: 0 0 0.35rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.notice-card h2,
+.notice-empty h2 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--navy);
+  margin: 0 0 0.7rem;
+  letter-spacing: -0.02em;
+}
+
+.notice-body,
+.notice-empty p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.notice-link {
+  margin: 1rem 0 0;
+}
+
 .links-row {
   display: flex;
   flex-wrap: wrap;
@@ -796,7 +897,17 @@ html[data-season="winter"] .season-caption {
   }
 }
 
+@media (max-width: 1100px) {
+  .wordmark-ko {
+    font-size: 1.08rem;
+  }
+}
+
 @media (max-width: 700px) {
+  .wordmark-ko {
+    font-size: 1.12rem;
+  }
+
   .hero-logo {
     top: 0.75rem;
     right: 0.75rem;

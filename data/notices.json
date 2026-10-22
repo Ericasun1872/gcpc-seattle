@@ -1,0 +1,15 @@
+{
+  "_readme": "Pastor/admin posts only: 공지 (notice), 주보 (bulletin), 행사 (event). No write form, login, comments, or member posting. Add objects to notices[]. Delete the sample before publishing real church news. Fields: category (notice|bulletin|event), date (YYYY-MM-DD), titleKo, titleEn, bodyKo, bodyEn. Optional: link (http/https only; Kakao only if the church provides a URL), linkLabelKo, linkLabelEn. Set sample to true only for how-to cards.",
+  "notices": [
+    {
+      "id": "sample-how-to",
+      "sample": true,
+      "category": "notice",
+      "date": "2026-10-22",
+      "titleKo": "샘플: 실제 글을 이렇게 올립니다",
+      "titleEn": "Sample: how to add a real post",
+      "bodyKo": "이 글은 교회 소식이 아닙니다. 목사님이나 웹 담당자가 data/notices.json을 열고 이 샘플을 지운 뒤 category를 notice(공지), bulletin(주보), event(행사) 중 하나로 넣고 titleKo / titleEn, date, bodyKo / bodyEn을 채우면 됩니다. 카카오 등 외부 안내는 교회가 주소를 주실 때만 link 칸에 넣습니다. 성도 글쓰기·댓글·로그인은 없습니다.",
+      "bodyEn": "This is not church news. A pastor or web volunteer opens data/notices.json, deletes this sample, sets category to notice, bulletin, or event, and fills in titleKo / titleEn, date, and bodyKo / bodyEn. Add a Kakao or other link only when the church provides a URL. There is no member writing, comments, or login."
+    }
+  ]
+}
