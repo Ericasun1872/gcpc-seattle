@@ -216,15 +216,17 @@ a:hover {
 
 .site-nav {
   display: flex;
-  gap: 0.15rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.1rem;
 }
 
 .site-nav a {
   text-decoration: none;
   color: var(--navy);
   font-weight: 600;
-  font-size: 0.92rem;
-  padding: 0.45rem 0.7rem;
+  font-size: 0.88rem;
+  padding: 0.45rem 0.58rem;
   border-radius: 999px;
 }
 
@@ -667,6 +669,96 @@ html[data-season="winter"] .season-caption {
 
 .sermon-card h3 a {
   text-decoration: none;
+}
+
+.notice-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1.2rem;
+}
+
+.notice-filters button {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--navy);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.42rem 0.9rem;
+  min-height: 2.4rem;
+  cursor: pointer;
+}
+
+.notice-filters button[aria-pressed="true"] {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+
+.notice-list {
+  display: grid;
+  gap: 1rem;
+  max-width: 44rem;
+}
+
+.notice-kind {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.notice-card,
+.notice-empty {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.4rem 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.notice-card-sample {
+  background: #efe4d2;
+  border-color: rgba(154, 120, 68, 0.28);
+  box-shadow: none;
+}
+
+.notice-badge {
+  display: inline-block;
+  margin: 0 0 0.65rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--cream);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.notice-meta {
+  margin: 0 0 0.35rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.notice-card h2,
+.notice-empty h2 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--navy);
+  margin: 0 0 0.7rem;
+  letter-spacing: -0.02em;
+}
+
+.notice-body,
+.notice-empty p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.notice-link {
+  margin: 1rem 0 0;
 }
 
 .links-row {

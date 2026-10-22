@@ -26,6 +26,11 @@
     if (season) next.searchParams.set("season", season);
     else next.searchParams.delete("season");
     var file = next.pathname.split("/").pop() || "index.html";
+    if (file === "notices.html") {
+      var category = window.GCPCNoticeFilter;
+      if (category && category !== "all") next.searchParams.set("category", category);
+      else next.searchParams.delete("category");
+    }
     return file + next.search + next.hash;
   }
 
@@ -117,6 +122,224 @@
     return y + "년 " + m + "월 " + d + "일";
   }
 
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function formatBody(text) {
+    return escapeHtml(text).replace(/\r\n|\r|\n/g, "<br>");
+  }
+
+  function safeHttpUrl(url) {
+    if (!url) return "";
+    try {
+      var parsed = new URL(String(url), window.location.href);
+      if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+        return parsed.href;
+      }
+    } catch (e) {
+      /* ignore */
+    }
+    return "";
+  }
+
+  var NOTICE_CATEGORIES = {
+    notice: { ko: "공지", en: "Notice" },
+    bulletin: { ko: "주보", en: "Bulletin" },
+    event: { ko: "행사", en: "Event" },
+  };
+
+  function normalizeCategory(value) {
+    var key = String(value || "")
+      .trim()
+      .toLowerCase();
+    if (key === "공지") return "notice";
+    if (key === "주보") return "bulletin";
+    if (key === "행사" || key === "events") return "event";
+    if (key === "notices" || key === "announcement") return "notice";
+    if (key === "bulletins" || key === "주보pdf") return "bulletin";
+    return NOTICE_CATEGORIES[key] ? key : "notice";
+  }
+
+  function requestedNoticeFilter() {
+    var params = new URLSearchParams(window.location.search);
+    var raw = params.get("category");
+    if (!raw || raw === "all") return "all";
+    return normalizeCategory(raw);
+  }
+
+  function emptyNoticesHtml(lang, filter) {
+    var labels = NOTICE_CATEGORIES[filter];
+    if (lang === "en") {
+      return (
+        '<div class="notice-empty card">' +
+        "<h2>" +
+        (labels ? "No " + labels.en.toLowerCase() + "s yet" : "No posts yet") +
+        "</h2>" +
+        "<p>This board is for pastor and admin " +
+        (labels ? labels.en.toLowerCase() + "s" : "notices, bulletins, and events") +
+        " only. When there is a real post, a volunteer adds it to <code>data/notices.json</code> (category: notice, bulletin, or event) and deletes the sample card.</p>" +
+        "</div>"
+      );
+    }
+    return (
+      '<div class="notice-empty card">' +
+      "<h2>" +
+      (labels ? "아직 올라온 " + labels.ko + "가 없습니다" : "아직 올라온 글이 없습니다") +
+      "</h2>" +
+      "<p>이곳은 목사님·담당자 " +
+      (labels ? labels.ko : "공지·주보·행사") +
+      "란입니다. 실제 글이 있으면 <code>data/notices.json</code>에 category를 notice / bulletin / event로 넣고 샘플을 지우면 됩니다.</p>" +
+      "</div>"
+    );
+  }
+
+  function noticeCardHtml(notice, lang) {
+    var title = lang === "en" ? notice.titleEn || notice.titleKo : notice.titleKo || notice.titleEn;
+    var body = lang === "en" ? notice.bodyEn || notice.bodyKo : notice.bodyKo || notice.bodyEn;
+    var date = notice.date ? formatDate(notice.date, lang) : "";
+    var sample = !!notice.sample;
+    var category = normalizeCategory(notice.category);
+    var categoryLabel = NOTICE_CATEGORIES[category][lang] || NOTICE_CATEGORIES[category].ko;
+    var badge = sample
+      ? lang === "en"
+        ? '<p class="notice-badge">Sample — not church news</p>'
+        : '<p class="notice-badge">샘플 — 교회 소식이 아닙니다</p>'
+      : "";
+    var meta = '<p class="notice-meta"><span class="notice-kind">' +
+      escapeHtml(categoryLabel) +
+      "</span>" +
+      (date ? " · " + escapeHtml(date) : "") +
+      (sample ? (lang === "en" ? " · How-to" : " · 안내") : "") +
+      "</p>";
+    var link = safeHttpUrl(notice.link);
+    var linkLabel =
+      lang === "en"
+        ? notice.linkLabelEn || notice.linkLabelKo || "Open link"
+        : notice.linkLabelKo || notice.linkLabelEn || "링크 열기";
+    var linkHtml = link
+      ? '<p class="notice-link"><a class="btn btn-ghost" href="' +
+        escapeHtml(link) +
+        '" rel="noopener noreferrer">' +
+        escapeHtml(linkLabel) +
+        "</a></p>"
+      : "";
+    return (
+      '<article class="notice-card' +
+      (sample ? " notice-card-sample" : "") +
+      '">' +
+      badge +
+      meta +
+      "<h2>" +
+      escapeHtml(title) +
+      "</h2>" +
+      '<div class="notice-body">' +
+      formatBody(body) +
+      "</div>" +
+      linkHtml +
+      "</article>"
+    );
+  }
+
+  function sortNotices(notices) {
+    return notices.slice().sort(function (a, b) {
+      if (!!a.sample !== !!b.sample) return a.sample ? 1 : -1;
+      return String(b.date || "").localeCompare(String(a.date || ""));
+    });
+  }
+
+  function syncNoticeFilterButtons() {
+    var filter = window.GCPCNoticeFilter || "all";
+    document.querySelectorAll("[data-notice-filter]").forEach(function (btn) {
+      btn.setAttribute(
+        "aria-pressed",
+        btn.getAttribute("data-notice-filter") === filter ? "true" : "false"
+      );
+    });
+  }
+
+  function setNoticeFilter(filter, pushUrl) {
+    window.GCPCNoticeFilter = filter === "all" ? "all" : normalizeCategory(filter);
+    syncNoticeFilterButtons();
+    if (pushUrl !== false && document.getElementById("notice-list")) {
+      var url = new URL(window.location.href);
+      if (window.GCPCNoticeFilter === "all") url.searchParams.delete("category");
+      else url.searchParams.set("category", window.GCPCNoticeFilter);
+      window.history.replaceState({}, "", url);
+    }
+    paintNotices();
+  }
+
+  function paintNotices() {
+    var list = document.getElementById("notice-list");
+    if (!list) return;
+    var lang = html.getAttribute("data-lang") || "ko";
+    var filter = window.GCPCNoticeFilter || "all";
+    var notices = window.GCPCNotices;
+    syncNoticeFilterButtons();
+    if (!Array.isArray(notices)) {
+      list.innerHTML =
+        lang === "en"
+          ? '<p class="note">Loading notices…</p>'
+          : '<p class="note">소식을 불러오는 중입니다…</p>';
+      return;
+    }
+    var visible =
+      filter === "all"
+        ? notices
+        : notices.filter(function (notice) {
+            return normalizeCategory(notice.category) === filter;
+          });
+    if (!visible.length) {
+      list.innerHTML = emptyNoticesHtml(lang, filter);
+      return;
+    }
+    list.innerHTML = sortNotices(visible)
+      .map(function (notice) {
+        return noticeCardHtml(notice, lang);
+      })
+      .join("");
+  }
+
+  function initNoticeFilters() {
+    var bar = document.getElementById("notice-filters");
+    if (!bar) return;
+    window.GCPCNoticeFilter = requestedNoticeFilter();
+    bar.addEventListener("click", function (event) {
+      var btn = event.target.closest("[data-notice-filter]");
+      if (!btn) return;
+      setNoticeFilter(btn.getAttribute("data-notice-filter"));
+    });
+    syncNoticeFilterButtons();
+  }
+
+  function loadNotices() {
+    var list = document.getElementById("notice-list");
+    if (!list) return;
+    if (Array.isArray(window.GCPCNotices)) {
+      paintNotices();
+      return;
+    }
+    paintNotices();
+    fetch("data/notices.json", { cache: "no-cache" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("notices");
+        return response.json();
+      })
+      .then(function (data) {
+        window.GCPCNotices = Array.isArray(data && data.notices) ? data.notices : [];
+        paintNotices();
+      })
+      .catch(function () {
+        window.GCPCNotices = [];
+        paintNotices();
+      });
+  }
+
   function renderSermons() {
     var list = document.getElementById("sermon-list");
     if (!list || !window.GCPC) return;
@@ -196,14 +419,19 @@
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
     initLang();
+    initNoticeFilters();
     renderSermons();
+    loadNotices();
     initContactForm();
     initYear();
   });
 
   document.addEventListener("click", function (event) {
     if (event.target.closest("[data-set-lang]")) {
-      window.setTimeout(renderSermons, 0);
+      window.setTimeout(function () {
+        renderSermons();
+        paintNotices();
+      }, 0);
     }
   });
 })();

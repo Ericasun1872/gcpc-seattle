@@ -2,13 +2,17 @@
 
 Official visitor site for **시애틀 주은혜교회** (Grace Community Presbyterian Church - Seattle).
 
-Korean default, English toggle. Five pages: Home, 예배 안내, 교회소개, 설교, 연락처.
+Korean default, English toggle. Pages: Home, 예배 안내, 교회소개, 설교, 소식, 연락처.
 
-No 게시판 / notice CMS. Living updates stay on [YouTube](https://www.youtube.com/@gcpc.seattle) and [Instagram](https://www.instagram.com/gcpc.seattle).
+**소식** is pastor/admin posts only: 공지 (notice), 주보 (bulletin), 행사 (event). There is no member writing, comments, login, or write form. Weekly life still lives on [YouTube](https://www.youtube.com/@gcpc.seattle) and [Instagram](https://www.instagram.com/gcpc.seattle). Kakao appears only if the church provides a link.
 
 ## Edit times or address
 
 Change `js/church.js` only. Do not invent parking, doors, kids ministry, phone, giving, or a domain.
+
+## Add a notice
+
+Edit `data/notices.json`. Set `category` to `notice`, `bulletin`, or `event`. Delete the labeled sample first. Do not invent church news. Optional `link` is http/https only.
 
 ## Preview locally
 
