@@ -340,43 +340,209 @@
       });
   }
 
-  function renderSermons() {
-    var list = document.getElementById("sermon-list");
-    if (!list || !window.GCPC) return;
-    var lang = html.getAttribute("data-lang") || "ko";
-    list.innerHTML = window.GCPC.sermons
+  var VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;
+
+  function safeVideoId(id) {
+    var value = String(id || "").trim();
+    return VIDEO_ID_RE.test(value) ? value : "";
+  }
+
+  function youtubeWatchUrl(id) {
+    return "https://www.youtube.com/watch?v=" + id;
+  }
+
+  function youtubeEmbedUrl(id) {
+    return "https://www.youtube-nocookie.com/embed/" + id;
+  }
+
+  function youtubeUploadsEmbed() {
+    var playlist =
+      (window.GCPC && window.GCPC.youtubeUploads) || "UUjffs0ZHxlv9bitLbmEolVQ";
+    return "https://www.youtube-nocookie.com/embed/videoseries?list=" + playlist;
+  }
+
+  function scriptureFromTitle(title) {
+    var parts = String(title || "").split(/\s*[ㅣ|]\s*/);
+    for (var i = 0; i < parts.length; i++) {
+      var part = parts[i].trim();
+      if (!part || /성낙규|주은혜|시애틀/.test(part)) continue;
+      if (/\d+\s*:\s*\d+/.test(part) || /\d+\s*장/.test(part)) return part;
+    }
+    return "";
+  }
+
+  function kindFromTitle(title) {
+    var text = String(title || "");
+    if (/금요기도회/.test(text)) return { ko: "금요기도회", en: "Friday prayer" };
+    if (/창립감사/.test(text)) {
+      return { ko: "창립감사예배", en: "Founding thanksgiving" };
+    }
+    if (/음성/.test(text)) return { ko: "음성 설교", en: "Audio sermon" };
+    if (/#?shorts/i.test(text)) return { ko: "Shorts", en: "Shorts" };
+    return { ko: "", en: "" };
+  }
+
+  function fallbackSermons() {
+    var listed = window.GCPC && Array.isArray(window.GCPC.sermons) ? window.GCPC.sermons : [];
+    return listed
       .map(function (sermon) {
-        var kind = lang === "en" ? sermon.kindEn : sermon.kindKo;
-        var date = formatDate(sermon.date, lang);
-        var scripture = sermon.scripture
-          ? '<p class="sermon-scripture">' + sermon.scripture + "</p>"
-          : "";
-        return (
-          '<article class="sermon-card">' +
-          '<a class="sermon-thumb" href="https://www.youtube.com/watch?v=' +
-          sermon.id +
-          '" rel="noopener noreferrer">' +
-          '<img src="https://i.ytimg.com/vi/' +
-          sermon.id +
-          '/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">' +
-          "</a>" +
-          '<div class="sermon-body">' +
-          '<p class="sermon-meta">' +
-          date +
-          " · " +
-          kind +
-          "</p>" +
-          "<h3>" +
-          '<a href="https://www.youtube.com/watch?v=' +
-          sermon.id +
-          '" rel="noopener noreferrer">' +
-          sermon.title +
-          "</a></h3>" +
-          scripture +
-          "</div></article>"
-        );
+        return normalizeSermon(sermon, sermon);
+      })
+      .filter(Boolean);
+  }
+
+  function enrichmentById() {
+    var map = {};
+    fallbackSermons().forEach(function (sermon) {
+      map[sermon.id] = sermon;
+    });
+    return map;
+  }
+
+  function normalizeSermon(raw, extra) {
+    if (!raw) return null;
+    var id = safeVideoId(raw.id);
+    var title = String(raw.title || "").trim();
+    if (!id || !title) return null;
+    extra = extra || {};
+    var parsedKind = kindFromTitle(title);
+    var date = String(raw.date || extra.date || "").trim();
+    if (date && !/^\d{4}-\d{2}-\d{2}$/.test(date)) date = "";
+    return {
+      id: id,
+      title: title,
+      date: date,
+      scripture: String(raw.scripture || extra.scripture || scriptureFromTitle(title) || "").trim(),
+      kindKo: String(raw.kindKo || extra.kindKo || parsedKind.ko || "").trim(),
+      kindEn: String(raw.kindEn || extra.kindEn || parsedKind.en || "").trim(),
+    };
+  }
+
+  function sermonList() {
+    if (Array.isArray(window.GCPCSermons) && window.GCPCSermons.length) {
+      return window.GCPCSermons;
+    }
+    return fallbackSermons();
+  }
+
+  function emptySermonsHtml(lang) {
+    if (lang === "en") {
+      return (
+        '<div class="notice-empty card">' +
+        "<h2>No uploads listed yet</h2>" +
+        "<p>This page reads <code>data/sermons.json</code> from YouTube @gcpc.seattle. We do not invent sermons. The channel link above still works.</p>" +
+        "</div>"
+      );
+    }
+    return (
+      '<div class="notice-empty card">' +
+      "<h2>아직 올라온 영상이 없습니다</h2>" +
+      "<p>이 목록은 유튜브 @gcpc.seattle의 <code>data/sermons.json</code>입니다. 설교를 지어내지 않습니다. 위의 채널 링크는 그대로 열려 있습니다.</p>" +
+      "</div>"
+    );
+  }
+
+  function sermonCardHtml(sermon, lang) {
+    var kind = lang === "en" ? sermon.kindEn : sermon.kindKo;
+    var date = sermon.date ? formatDate(sermon.date, lang) : "";
+    var meta = [date, kind].filter(Boolean).join(" · ");
+    var scripture = sermon.scripture
+      ? '<p class="sermon-scripture">' + escapeHtml(sermon.scripture) + "</p>"
+      : "";
+    return (
+      '<article class="sermon-card">' +
+      '<a class="sermon-thumb" href="' +
+      youtubeWatchUrl(sermon.id) +
+      '" rel="noopener noreferrer">' +
+      '<img src="https://i.ytimg.com/vi/' +
+      sermon.id +
+      '/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">' +
+      "</a>" +
+      '<div class="sermon-body">' +
+      (meta ? '<p class="sermon-meta">' + escapeHtml(meta) + "</p>" : "") +
+      "<h3>" +
+      '<a href="' +
+      youtubeWatchUrl(sermon.id) +
+      '" rel="noopener noreferrer">' +
+      escapeHtml(sermon.title) +
+      "</a></h3>" +
+      scripture +
+      "</div></article>"
+    );
+  }
+
+  function updateLatestSermonEmbed(sermon) {
+    var src = sermon ? youtubeEmbedUrl(sermon.id) : youtubeUploadsEmbed();
+    document.querySelectorAll("[data-latest-sermon]").forEach(function (frame) {
+      if (frame.getAttribute("src") !== src) frame.setAttribute("src", src);
+      if (sermon) {
+        frame.setAttribute("title", sermon.title);
+      }
+    });
+    var titleEl = document.getElementById("latest-sermon-title");
+    if (!titleEl) return;
+    if (!sermon) {
+      titleEl.hidden = true;
+      titleEl.textContent = "";
+      return;
+    }
+    titleEl.hidden = false;
+    titleEl.textContent = sermon.title;
+  }
+
+  function renderSermons() {
+    var sermons = sermonList();
+    updateLatestSermonEmbed(sermons[0] || null);
+    var list = document.getElementById("sermon-list");
+    if (!list) return;
+    var lang = html.getAttribute("data-lang") || "ko";
+    if (window.GCPCSermons === undefined) {
+      list.innerHTML =
+        lang === "en"
+          ? '<p class="note">Loading sermons from YouTube…</p>'
+          : '<p class="note">유튜브 설교를 불러오는 중입니다…</p>';
+      return;
+    }
+    if (!sermons.length) {
+      list.innerHTML = emptySermonsHtml(lang);
+      return;
+    }
+    list.innerHTML = sermons
+      .map(function (sermon) {
+        return sermonCardHtml(sermon, lang);
       })
       .join("");
+  }
+
+  function loadSermons() {
+    var needsList = document.getElementById("sermon-list");
+    var needsEmbed = document.querySelector("[data-latest-sermon]");
+    if (!needsList && !needsEmbed) return;
+    if (Array.isArray(window.GCPCSermons)) {
+      renderSermons();
+      return;
+    }
+    renderSermons();
+    fetch("data/sermons.json", { cache: "no-cache" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("sermons");
+        return response.json();
+      })
+      .then(function (data) {
+        var extra = enrichmentById();
+        var videos = Array.isArray(data && data.videos) ? data.videos : [];
+        window.GCPCSermons = videos
+          .map(function (video) {
+            return normalizeSermon(video, extra[safeVideoId(video && video.id)] || {});
+          })
+          .filter(Boolean);
+        if (!window.GCPCSermons.length) window.GCPCSermons = fallbackSermons();
+        renderSermons();
+      })
+      .catch(function () {
+        window.GCPCSermons = fallbackSermons();
+        renderSermons();
+      });
   }
 
   function initContactForm() {
@@ -420,7 +586,7 @@
     initNav();
     initLang();
     initNoticeFilters();
-    renderSermons();
+    loadSermons();
     loadNotices();
     initContactForm();
     initYear();

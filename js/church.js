@@ -36,6 +36,7 @@ window.GCPC = {
   youtube: "https://www.youtube.com/@gcpc.seattle",
   youtubeChannelId: "UCjffs0ZHxlv9bitLbmEolVQ",
   youtubeUploads: "UUjffs0ZHxlv9bitLbmEolVQ",
+  youtubeVideosFeed: "https://www.youtube.com/feeds/videos.xml?playlist_id=UUjffs0ZHxlv9bitLbmEolVQ",
   instagram: "https://www.instagram.com/gcpc.seattle",
   audioPlaylist: "https://www.youtube.com/playlist?list=PL97qqv3K-ncktjqNeZPbzPtQK1MRcZy3M",
   audioPlaylistId: "PL97qqv3K-ncktjqNeZPbzPtQK1MRcZy3M",
@@ -45,8 +46,9 @@ window.GCPC = {
     "https://maps.apple.com/?q=2721+164th+St.+SW,+Lynnwood,+WA+98087",
   mapsEmbed:
     "https://maps.google.com/maps?q=2721+164th+St.+SW,+Lynnwood,+WA+98087&z=16&output=embed",
-  latestSermonId: "GMkH-cgVwrM",
-  /* Recent Sunday messages as published on YouTube (titles kept in Korean). */
+  latestSermonId: "QQCm4ZO5dSI",
+  /* Fallback only. Live list is data/sermons.json from the YouTube channel.
+     Do not invent videos. Optional scripture/kind here enrich a matching id. */
   sermons: [
     {
       id: "GMkH-cgVwrM",
