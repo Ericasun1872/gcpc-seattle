@@ -680,6 +680,14 @@ html[data-season="winter"] .season-caption {
   text-decoration: none;
 }
 
+.featured-sermon-title {
+  margin: 0.85rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
 .notice-filters {
   display: flex;
   flex-wrap: wrap;

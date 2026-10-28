@@ -14,6 +14,20 @@ Change `js/church.js` only. Do not invent parking, doors, kids ministry, phone, 
 
 Edit `data/notices.json`. Set `category` to `notice`, `bulletin`, or `event`. Delete the labeled sample first. Do not invent church news. Optional `link` is http/https only.
 
+## Sermons from YouTube
+
+The 설교 page lists recent uploads from [@gcpc.seattle](https://www.youtube.com/@gcpc.seattle). Titles stay in Korean as published. Do not invent sermons.
+
+`data/sermons.json` is refreshed by `.github/workflows/refresh-sermons.yml` (daily, or **Actions → Refresh YouTube sermons → Run workflow**). The script reads the public uploads RSS (`playlist_id=UUjffs0ZHxlv9bitLbmEolVQ`). If YouTube’s RSS is down (it often answers 404), it reads the public Videos tab instead. No YouTube API key.
+
+To refresh locally:
+
+```bash
+python3 scripts/refresh-sermons.py --out data/sermons.json
+```
+
+`js/church.js` `sermons` is a fallback and can add scripture/kind for a matching video id. The featured player also embeds the uploads playlist so a new video can appear before the next refresh.
+
 ## Preview locally
 
 ```bash

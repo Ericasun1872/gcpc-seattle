@@ -70,9 +70,10 @@
 
     <section class="section">
       <div class="wrap">
-        <h2 data-lang="ko">최근 주일설교</h2>
-        <h2 data-lang="en" hidden>Latest Sunday sermon</h2>
-        <iframe class="video-frame" title="시애틀 주은혜교회 최근 주일설교" src="https://www.youtube-nocookie.com/embed/GMkH-cgVwrM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        <h2 data-lang="ko">최근 설교</h2>
+        <h2 data-lang="en" hidden>Latest sermon</h2>
+        <iframe id="latest-sermon" class="video-frame" data-latest-sermon title="시애틀 주은혜교회 최근 설교" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUjffs0ZHxlv9bitLbmEolVQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        <p id="latest-sermon-title" class="featured-sermon-title" hidden></p>
         <div class="links-row">
           <a class="btn btn-primary" href="https://www.youtube.com/@gcpc.seattle" rel="noopener noreferrer"><span data-lang="ko">유튜브 채널</span><span data-lang="en" hidden>YouTube channel</span></a>
           <a class="btn btn-ghost" href="https://www.youtube.com/playlist?list=PL97qqv3K-ncktjqNeZPbzPtQK1MRcZy3M" rel="noopener noreferrer"><span data-lang="ko">음성 설교 (audio only)</span><span data-lang="en" hidden>Audio sermons</span></a>
@@ -83,10 +84,10 @@
 
     <section class="section">
       <div class="wrap">
-        <h2 data-lang="ko">최근 주일</h2>
-        <h2 data-lang="en" hidden>Recent Sundays</h2>
-        <p class="note" data-lang="ko">목록은 유튜브에 올라온 최근 주일 메시지입니다. 새 설교가 올라오면 <code>js/church.js</code>의 sermons 배열만 고치면 됩니다.</p>
-        <p class="note" data-lang="en" hidden>A short list of recent Sunday messages from the church channel. A volunteer can update the sermons list in <code>js/church.js</code>.</p>
+        <h2 data-lang="ko">최근 업로드</h2>
+        <h2 data-lang="en" hidden>Recent uploads</h2>
+        <p class="note" data-lang="ko">목록은 유튜브 @gcpc.seattle에 올라온 최근 영상입니다. 새 업로드는 RSS(또는 채널 Videos 페이지)를 읽어 <code>data/sermons.json</code>에 반영됩니다. 제목은 채널에 공개된 한글 그대로입니다. 설교를 지어내지 않습니다.</p>
+        <p class="note" data-lang="en" hidden>Recent uploads from YouTube @gcpc.seattle. A scheduled Action refreshes <code>data/sermons.json</code> from the public RSS feed (or the Videos tab if RSS is down). Titles stay in Korean as published. We do not invent sermons.</p>
         <div id="sermon-list" class="sermon-list"></div>
       </div>
     </section>
