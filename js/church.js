@@ -2,7 +2,8 @@
  * 시애틀 주은혜교회 — facts a volunteer can edit.
  *
  * Only put confirmed details here. Leave omitted items as they are.
- * Do not invent parking, doors, kids ministry, phone, giving, or a domain.
+ * Do not invent parking, doors, kids ministry, phone, extra giving methods, or extra domains.
+ * Public site: gcpcseattle.org
  */
 window.GCPC = {
   koreanName: "시애틀 주은혜교회",
@@ -16,6 +17,9 @@ window.GCPC = {
   identityKo: "오직 하나님의 은혜라는 고백 위에 세워진 교회",
   identityEn: "A church built on the confession that it is only by the grace of God",
   email: "gcpc.seattle@gmail.com",
+  givingCheckPayee: "GCPC",
+  givingZelleName: "Grace Community Presbyterian Church, Mukilteo, WA",
+  givingZelleEmail: "gcpc.seattle@gmail.com",
   address: "2721 164th St. SW, Lynnwood, WA 98087",
   placeKo: "Renew Church 소예배실",
   placeEn: "Renew Church chapel (소예배실)",

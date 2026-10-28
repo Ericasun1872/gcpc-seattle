@@ -3,7 +3,8 @@
  * Home: slow elegant cycle spring → summer → autumn → winter.
  * Pin a season with ?season=spring|summer|autumn|winter (no cycle).
  * Inner pages follow the pin, or the calendar season.
- * Image URLs resolve from this script so GitHub Pages /gcpc-seattle/ works.
+ * Image URLs resolve from this script so both the custom domain root
+ * (gcpcseattle.org) and the project path /gcpc-seattle/ work.
  */
 (function () {
   var ORDER = ["spring", "summer", "autumn", "winter"];
