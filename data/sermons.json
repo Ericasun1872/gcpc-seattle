@@ -3,8 +3,8 @@
   "channelId": "UCjffs0ZHxlv9bitLbmEolVQ",
   "playlistId": "UUjffs0ZHxlv9bitLbmEolVQ",
   "channel": "https://www.youtube.com/@gcpc.seattle",
-  "source": "youtube-videos-page",
-  "fetchedAt": "2026-10-28T00:39:49Z",
+  "source": "youtube-rss-playlist",
+  "fetchedAt": "2026-10-28T11:24:33Z",
   "videos": [
     {
       "id": "QQCm4ZO5dSI",
@@ -13,88 +13,88 @@
       "url": "https://www.youtube.com/watch?v=QQCm4ZO5dSI"
     },
     {
+      "id": "o8JzepyKT7g",
+      "title": "기도하고 계십니까? (10/9/26 금요기도회)",
+      "date": "2026-10-12",
+      "url": "https://www.youtube.com/watch?v=o8JzepyKT7g"
+    },
+    {
       "id": "Jleiz6Po7Ps",
       "title": "미래에 대한 걱정이 몰려올 때마다 기도하라 (10/9/26 금요기도회)",
-      "date": "2026-10-09",
+      "date": "2026-10-11",
       "url": "https://www.youtube.com/watch?v=Jleiz6Po7Ps"
+    },
+    {
+      "id": "n6XcaXA493I",
+      "title": "크리스천의 가장 무서운 적은 '고난'이 아닙니다 ❌️",
+      "date": "2026-10-07",
+      "url": "https://www.youtube.com/watch?v=n6XcaXA493I"
     },
     {
       "id": "GMkH-cgVwrM",
       "title": "차든지 뜨겁든지 하는 교회, 라오디게아교회ㅣ요한계시록 3:7-13ㅣ시애틀주은혜교회",
-      "date": "2026-10-04",
+      "date": "2026-10-05",
       "url": "https://www.youtube.com/watch?v=GMkH-cgVwrM"
+    },
+    {
+      "id": "C_9I_ZCWVIw",
+      "title": "작은 능력을 가지고도 끝까지 충성한 빌라델비아 교회",
+      "date": "2026-10-01",
+      "url": "https://www.youtube.com/watch?v=C_9I_ZCWVIw"
+    },
+    {
+      "id": "PwvExVDyIm8",
+      "title": "성찬식: 매달 첫째 주일예배시 (시애틀 주은혜교회)",
+      "date": "2026-09-28",
+      "url": "https://www.youtube.com/watch?v=PwvExVDyIm8"
     },
     {
       "id": "53AmGFNR8Ug",
       "title": "작은 능력으로도 끝까지 충성한 교회, 빌라델비아 교회ㅣ요한계시록 3:7-13ㅣ성낙규목사",
-      "date": "2026-09-27",
+      "date": "2026-09-28",
       "url": "https://www.youtube.com/watch?v=53AmGFNR8Ug"
+    },
+    {
+      "id": "sAJFLTDtfIg",
+      "title": "9/20/26 창립감사예배 설교중에서..",
+      "date": "2026-09-22",
+      "url": "https://www.youtube.com/watch?v=sAJFLTDtfIg"
+    },
+    {
+      "id": "dETW0EK2L5c",
+      "title": "시애틀 주은혜교회 중심구절 (고린도전서 15:10)",
+      "date": "2026-09-21",
+      "url": "https://www.youtube.com/watch?v=dETW0EK2L5c"
+    },
+    {
+      "id": "Yioh1sR3ZdA",
+      "title": "시애틀 주은혜교회를 위한 기도 🙏",
+      "date": "2026-09-20",
+      "url": "https://www.youtube.com/watch?v=Yioh1sR3ZdA"
+    },
+    {
+      "id": "zi2qjM7GN3I",
+      "title": "시애틀 주은혜교회 창립감사예배 🙏",
+      "date": "2026-09-17",
+      "url": "https://www.youtube.com/watch?v=zi2qjM7GN3I"
     },
     {
       "id": "rwjUv171GAs",
       "title": "겉과 속이 같은 교회, 사데교회ㅣ요한계시록 3:1-6ㅣ성낙규목사",
-      "date": "2026-09-13",
+      "date": "2026-09-14",
       "url": "https://www.youtube.com/watch?v=rwjUv171GAs"
+    },
+    {
+      "id": "wiyi0x6vqHg",
+      "title": "시애틀 주은혜교회 창립기념 예배 안내 (9/20/26)",
+      "date": "2026-09-10",
+      "url": "https://www.youtube.com/watch?v=wiyi0x6vqHg"
     },
     {
       "id": "KeUTJ4cTOL0",
       "title": "진리를 분별하고 지키는 교회, 두아디라 교회ㅣ요한계시록 2:18-29ㅣ성낙규목사",
-      "date": "2026-09-06",
+      "date": "2026-09-07",
       "url": "https://www.youtube.com/watch?v=KeUTJ4cTOL0"
-    },
-    {
-      "id": "lmBkizHjUMI",
-      "title": "타협하지 않는 교회, 버가모교회ㅣ요한계시록 2:12-17ㅣ성낙규목사",
-      "date": "2026-09-01",
-      "url": "https://www.youtube.com/watch?v=lmBkizHjUMI"
-    },
-    {
-      "id": "UMR9vzWDo2I",
-      "title": "영적으로 부유한 서머나교회 ㅣ 요한계시록 2:8-11ㅣ성낙규 목사",
-      "date": "2026-08-23",
-      "url": "https://www.youtube.com/watch?v=UMR9vzWDo2I"
-    },
-    {
-      "id": "J21F4zkv0zE",
-      "title": "금요기도회 ㅣ 시애틀 주은혜교회ㅣ성낙규목사",
-      "date": "2026-08-23",
-      "url": "https://www.youtube.com/watch?v=J21F4zkv0zE"
-    },
-    {
-      "id": "8rSZTLC19QI",
-      "title": "처음사랑을 회복하는 교회, 에베소교회 ㅣ 요한계시록 2:1-7ㅣ성낙규목사",
-      "date": "2026-08-16",
-      "url": "https://www.youtube.com/watch?v=8rSZTLC19QI"
-    },
-    {
-      "id": "wUInkXRZbJ4",
-      "title": "이제 말씀에 순종해서 걸어가라 ㅣ 열왕기하 3:8-20ㅣ성낙규목사",
-      "date": "2026-08-02",
-      "url": "https://www.youtube.com/watch?v=wUInkXRZbJ4"
-    },
-    {
-      "id": "aKEsw1wyz-A",
-      "title": "전쟁보다 먼저 기도한 여호사밧 ㅣ 역대하 20:1-13ㅣ성낙규목사",
-      "date": "2026-07-27",
-      "url": "https://www.youtube.com/watch?v=aKEsw1wyz-A"
-    },
-    {
-      "id": "eu3NLtQuqFY",
-      "title": "기도로 시작하고 기도로 끝낸 느헤미야 ㅣ 느헤미야 1:2-12ㅣ성낙규목사",
-      "date": "2026-07-21",
-      "url": "https://www.youtube.com/watch?v=eu3NLtQuqFY"
-    },
-    {
-      "id": "HP2je2jof8o",
-      "title": "하나님께 거기서 제단을 쌓으라 하신지라ㅣ창세기 35:1-5ㅣ성낙규목사",
-      "date": "2026-07-13",
-      "url": "https://www.youtube.com/watch?v=HP2je2jof8o"
-    },
-    {
-      "id": "LzECmaVtjRU",
-      "title": "시작하며 하나님께서 우리에게 요구하시는 모습ㅣ여호수아 5:2-15ㅣ성낙규목사",
-      "date": "2026-07-06",
-      "url": "https://www.youtube.com/watch?v=LzECmaVtjRU"
     }
   ]
 }
