@@ -325,7 +325,7 @@ main {
   z-index: 3;
   top: 1.05rem;
   right: max(1rem, calc((100% - min(var(--content), calc(100% - 2rem))) / 2));
-  width: min(15rem, 36vw);
+  width: min(16.5rem, 38vw);
   margin: 0;
   background: none;
   border: 0;
@@ -1010,7 +1010,7 @@ html[data-season="winter"] .season-caption {
   .hero-logo {
     top: 0.75rem;
     right: 0.75rem;
-    width: 8.4rem;
+    width: 9.2rem;
   }
 
   .hero-seasonal {
