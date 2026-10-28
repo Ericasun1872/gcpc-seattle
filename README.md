@@ -8,7 +8,7 @@ Korean default, English toggle. Pages: Home, 예배 안내, 교회소개, 설교
 
 ## Edit times or address
 
-Change `js/church.js` only. Do not invent parking, doors, kids ministry, phone, extra giving methods, or a domain. Giving on the site is check (pay to GCPC) and Zelle only.
+Change `js/church.js` only. Do not invent parking, doors, kids ministry, phone, extra giving methods, or extra domains. Giving on the site is check (pay to GCPC) and Zelle only. Public site: **gcpcseattle.org**.
 
 ## Add a notice
 
@@ -28,4 +28,6 @@ The home hero watercolor is a light watermark over the painting (no heavy white 
 
 Official repo: [Ericasun1872/gcpc-seattle](https://github.com/Ericasun1872/gcpc-seattle). Do **not** put this site in `Ericasun1872/Erica-Sun`.
 
-After this branch merges to `main`, enable GitHub Pages from the default branch, site root. Do not attach a domain until the church chooses one. Do not use `gcpc.church` (another congregation).
+GitHub Pages publishes from `main`, site root. Custom domain file is `CNAME` → **gcpcseattle.org**. Do not add other domains. Do not use `gcpc.church` (another congregation).
+
+Until Porkbun DNS points at GitHub Pages and HTTPS finishes, the site still loads at [ericasun1872.github.io/gcpc-seattle](https://ericasun1872.github.io/gcpc-seattle/). Page links and assets are relative, so they work at the domain root and at `/gcpc-seattle/`.

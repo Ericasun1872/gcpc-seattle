@@ -2,7 +2,8 @@
  * 시애틀 주은혜교회 — facts a volunteer can edit.
  *
  * Only put confirmed details here. Leave omitted items as they are.
- * Do not invent parking, doors, kids ministry, phone, extra giving methods, or a domain.
+ * Do not invent parking, doors, kids ministry, phone, extra giving methods, or extra domains.
+ * Public site: gcpcseattle.org
  */
 window.GCPC = {
   koreanName: "시애틀 주은혜교회",
