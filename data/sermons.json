@@ -4,8 +4,14 @@
   "playlistId": "UUjffs0ZHxlv9bitLbmEolVQ",
   "channel": "https://www.youtube.com/@gcpc.seattle",
   "source": "youtube-rss-playlist",
-  "fetchedAt": "2026-10-28T11:24:33Z",
+  "fetchedAt": "2026-10-30T11:26:59Z",
   "videos": [
+    {
+      "id": "36UT-ZTs4Es",
+      "title": "하나님이 기뻐하시는 성도 2 - 은혜있는 성도 (10/25/26 주일설교)",
+      "date": "2026-10-30",
+      "url": "https://www.youtube.com/watch?v=36UT-ZTs4Es"
+    },
     {
       "id": "QQCm4ZO5dSI",
       "title": "하나님께서 기뻐하시는 성도 2, 은혜있는 성도 ㅣ사도행전 11:19-26ㅣ성낙규목사",
@@ -89,12 +95,6 @@
       "title": "시애틀 주은혜교회 창립기념 예배 안내 (9/20/26)",
       "date": "2026-09-10",
       "url": "https://www.youtube.com/watch?v=wiyi0x6vqHg"
-    },
-    {
-      "id": "KeUTJ4cTOL0",
-      "title": "진리를 분별하고 지키는 교회, 두아디라 교회ㅣ요한계시록 2:18-29ㅣ성낙규목사",
-      "date": "2026-09-07",
-      "url": "https://www.youtube.com/watch?v=KeUTJ4cTOL0"
     }
   ]
 }
