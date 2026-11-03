@@ -4,8 +4,14 @@
   "playlistId": "UUjffs0ZHxlv9bitLbmEolVQ",
   "channel": "https://www.youtube.com/@gcpc.seattle",
   "source": "youtube-rss-playlist",
-  "fetchedAt": "2026-10-30T11:26:59Z",
+  "fetchedAt": "2026-11-03T12:52:22Z",
   "videos": [
+    {
+      "id": "GbRVSF_F-h4",
+      "title": "하나님께서 기뻐하시는 성도 3, 믿음과 소망과 사랑이 있는 성도ㅣ 데살로니가전서 1:2-10ㅣ성낙규목사",
+      "date": "2026-11-03",
+      "url": "https://www.youtube.com/watch?v=GbRVSF_F-h4"
+    },
     {
       "id": "36UT-ZTs4Es",
       "title": "하나님이 기뻐하시는 성도 2 - 은혜있는 성도 (10/25/26 주일설교)",
@@ -89,12 +95,6 @@
       "title": "겉과 속이 같은 교회, 사데교회ㅣ요한계시록 3:1-6ㅣ성낙규목사",
       "date": "2026-09-14",
       "url": "https://www.youtube.com/watch?v=rwjUv171GAs"
-    },
-    {
-      "id": "wiyi0x6vqHg",
-      "title": "시애틀 주은혜교회 창립기념 예배 안내 (9/20/26)",
-      "date": "2026-09-10",
-      "url": "https://www.youtube.com/watch?v=wiyi0x6vqHg"
     }
   ]
 }
