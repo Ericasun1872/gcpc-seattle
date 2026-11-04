@@ -4,11 +4,17 @@
   "playlistId": "UUjffs0ZHxlv9bitLbmEolVQ",
   "channel": "https://www.youtube.com/@gcpc.seattle",
   "source": "youtube-rss-playlist",
-  "fetchedAt": "2026-11-03T12:52:22Z",
+  "fetchedAt": "2026-11-04T13:04:07Z",
   "videos": [
     {
+      "id": "FIGl6a5veMY",
+      "title": "성령충만한 성도: 하나님께서 기뻐하시는 성도 4ㅣ에베소서 5: 15-21ㅣ성낙규목사",
+      "date": "2026-11-04",
+      "url": "https://www.youtube.com/watch?v=FIGl6a5veMY"
+    },
+    {
       "id": "GbRVSF_F-h4",
-      "title": "하나님께서 기뻐하시는 성도 3, 믿음과 소망과 사랑이 있는 성도ㅣ 데살로니가전서 1:2-10ㅣ성낙규목사",
+      "title": "믿음과 소망과 사랑이 있는 성도: 하나님께서 기뻐하시는 성도 3ㅣ 데살로니가전서 1:2-10ㅣ성낙규목사",
       "date": "2026-11-03",
       "url": "https://www.youtube.com/watch?v=GbRVSF_F-h4"
     },
@@ -20,7 +26,7 @@
     },
     {
       "id": "QQCm4ZO5dSI",
-      "title": "하나님께서 기뻐하시는 성도 2, 은혜있는 성도 ㅣ사도행전 11:19-26ㅣ성낙규목사",
+      "title": "은혜 있는 성도: 하나님께서 기뻐하시는 성도 2ㅣ사도행전 11:19-26ㅣ성낙규목사",
       "date": "2026-10-23",
       "url": "https://www.youtube.com/watch?v=QQCm4ZO5dSI"
     },
@@ -89,12 +95,6 @@
       "title": "시애틀 주은혜교회 창립감사예배 🙏",
       "date": "2026-09-17",
       "url": "https://www.youtube.com/watch?v=zi2qjM7GN3I"
-    },
-    {
-      "id": "rwjUv171GAs",
-      "title": "겉과 속이 같은 교회, 사데교회ㅣ요한계시록 3:1-6ㅣ성낙규목사",
-      "date": "2026-09-14",
-      "url": "https://www.youtube.com/watch?v=rwjUv171GAs"
     }
   ]
 }
