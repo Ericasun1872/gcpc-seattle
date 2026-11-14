@@ -4,8 +4,14 @@
   "playlistId": "UUjffs0ZHxlv9bitLbmEolVQ",
   "channel": "https://www.youtube.com/@gcpc.seattle",
   "source": "youtube-rss-playlist",
-  "fetchedAt": "2026-11-04T13:04:07Z",
+  "fetchedAt": "2026-11-14T12:16:07Z",
   "videos": [
+    {
+      "id": "XjxdTh3Q5xw",
+      "title": "세 번의 절기, 세 번의 감사 ㅣ 출애굽기 23: 14-16 ㅣ성낙규목사",
+      "date": "2026-11-14",
+      "url": "https://www.youtube.com/watch?v=XjxdTh3Q5xw"
+    },
     {
       "id": "FIGl6a5veMY",
       "title": "성령충만한 성도: 하나님께서 기뻐하시는 성도 4ㅣ에베소서 5: 15-21ㅣ성낙규목사",
@@ -89,12 +95,6 @@
       "title": "시애틀 주은혜교회를 위한 기도 🙏",
       "date": "2026-09-20",
       "url": "https://www.youtube.com/watch?v=Yioh1sR3ZdA"
-    },
-    {
-      "id": "zi2qjM7GN3I",
-      "title": "시애틀 주은혜교회 창립감사예배 🙏",
-      "date": "2026-09-17",
-      "url": "https://www.youtube.com/watch?v=zi2qjM7GN3I"
     }
   ]
 }
