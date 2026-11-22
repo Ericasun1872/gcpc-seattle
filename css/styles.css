@@ -768,6 +768,40 @@ html[data-season="winter"] .season-caption {
   letter-spacing: -0.02em;
 }
 
+.notice-photos {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.2rem 0 1.05rem;
+}
+
+.notice-photo {
+  margin: 0.2rem 0 1.05rem;
+}
+
+.notice-photos .notice-photo {
+  margin: 0;
+}
+
+.notice-photo img {
+  display: block;
+  width: min(100%, 22rem);
+  height: auto;
+  border-radius: 0.9rem;
+  background: var(--cream-deep);
+  box-shadow: var(--shadow);
+}
+
+.notice-photos .notice-photo img {
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .notice-photos {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
 .notice-body,
 .notice-empty p {
   margin: 0;

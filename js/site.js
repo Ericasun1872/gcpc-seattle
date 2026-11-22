@@ -147,6 +147,60 @@
     return "";
   }
 
+  function safeImageSrc(src) {
+    var value = String(src || "").trim();
+    if (!value || value.indexOf("..") !== -1) return "";
+    if (!/^img\/[A-Za-z0-9._/-]+\.(jpe?g|png|webp|gif)$/i.test(value)) return "";
+    return value;
+  }
+
+  function noticePhotoList(notice, lang, title) {
+    var items = [];
+    var seen = {};
+    function push(src, altKo, altEn) {
+      var safe = safeImageSrc(src);
+      if (!safe || seen[safe]) return;
+      seen[safe] = true;
+      items.push({
+        src: safe,
+        alt:
+          lang === "en"
+            ? altEn || altKo || title
+            : altKo || altEn || title,
+      });
+    }
+    if (Array.isArray(notice.images)) {
+      notice.images.forEach(function (item) {
+        if (!item) return;
+        if (typeof item === "string") {
+          push(item, notice.imageAltKo, notice.imageAltEn);
+        } else {
+          push(item.src, item.altKo, item.altEn);
+        }
+      });
+    }
+    push(notice.image, notice.imageAltKo, notice.imageAltEn);
+    return items;
+  }
+
+  function noticePhotosHtml(notice, lang, title) {
+    var photos = noticePhotoList(notice, lang, title);
+    if (!photos.length) return "";
+    var figures = photos
+      .map(function (photo) {
+        return (
+          '<figure class="notice-photo"><img src="' +
+          escapeHtml(photo.src) +
+          '" alt="' +
+          escapeHtml(photo.alt) +
+          '"></figure>'
+        );
+      })
+      .join("");
+    if (photos.length === 1) return figures;
+    return '<div class="notice-photos">' + figures + "</div>";
+  }
+
   var NOTICE_CATEGORIES = {
     notice: { ko: "공지", en: "Notice" },
     bulletin: { ko: "주보", en: "Bulletin" },
@@ -228,6 +282,7 @@
         escapeHtml(linkLabel) +
         "</a></p>"
       : "";
+    var imageHtml = noticePhotosHtml(notice, lang, title);
     return (
       '<article class="notice-card' +
       (sample ? " notice-card-sample" : "") +
@@ -237,6 +292,7 @@
       "<h2>" +
       escapeHtml(title) +
       "</h2>" +
+      imageHtml +
       '<div class="notice-body">' +
       formatBody(body) +
       "</div>" +
