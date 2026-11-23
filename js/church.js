@@ -10,6 +10,9 @@ window.GCPC = {
   englishName: "Grace Community Presbyterian Church - Seattle",
   handle: "GCPC",
   pastor: "성낙규",
+  /* English name as printed on the 22 Nov 2026 주보. Do not invent other spellings. */
+  pastorEn: "Nakkyu Sung",
+  pastorTitleEn: "Senior Pastor",
   verseRefKo: "고린도전서 15:10",
   verseRefEn: "1 Corinthians 15:10",
   verseKo: "그러나 내가 나 된 것은 하나님의 은혜로 된 것이니",

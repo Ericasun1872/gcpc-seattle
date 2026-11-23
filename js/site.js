@@ -201,6 +201,233 @@
     return '<div class="notice-photos">' + figures + "</div>";
   }
 
+  function linesHtml(text) {
+    return formatBody(text);
+  }
+
+  function bulletinListHtml(items, lang, className) {
+    if (!Array.isArray(items) || !items.length) return "";
+    var list = items
+      .map(function (item) {
+        var primary =
+          lang === "en" ? item.en || item.ko : item.ko || item.en;
+        if (!primary) return "";
+        return "<li>" + linesHtml(primary) + "</li>";
+      })
+      .join("");
+    if (!list) return "";
+    return '<ul class="' + className + '">' + list + "</ul>";
+  }
+
+  function bulletinOrderHtml(order, lang) {
+    if (!Array.isArray(order) || !order.length) return "";
+    var rows = order
+      .map(function (item) {
+        var ko = item && item.ko ? String(item.ko) : "";
+        var en = item && item.en ? String(item.en) : "";
+        if (!ko && !en) return "";
+        var first = lang === "en" ? en || ko : ko || en;
+        var second = lang === "en" ? (en && ko && ko !== en ? ko : "") : en && en !== ko ? en : "";
+        return (
+          "<li>" +
+          '<span class="bulletin-order-primary">' +
+          escapeHtml(first) +
+          "</span>" +
+          (second
+            ? '<span class="bulletin-order-secondary">' +
+              escapeHtml(second) +
+              "</span>"
+            : "") +
+          "</li>"
+        );
+      })
+      .join("");
+    return rows ? '<ol class="bulletin-order">' + rows + "</ol>" : "";
+  }
+
+  function bulletinHeading(ko, en, lang) {
+    var primary = lang === "en" ? en || ko : ko || en;
+    var secondary =
+      lang === "en"
+        ? en && ko && ko !== en
+          ? ko
+          : ""
+        : ko && en && en !== ko
+          ? en
+          : "";
+    if (!primary) return "";
+    return (
+      "<h3>" +
+      escapeHtml(primary) +
+      (secondary
+        ? '<span class="bulletin-h-en">' + escapeHtml(secondary) + "</span>"
+        : "") +
+      "</h3>"
+    );
+  }
+
+  function bulletinScheduleHtml(rows, lang) {
+    if (!Array.isArray(rows) || !rows.length) return "";
+    var items = rows
+      .map(function (row) {
+        var label = lang === "en" ? row.labelEn || row.labelKo : row.labelKo || row.labelEn;
+        var time = lang === "en" ? row.timeEn || row.timeKo : row.timeKo || row.timeEn;
+        if (!label && !time) return "";
+        return (
+          "<li>" +
+          '<span class="bulletin-schedule-label">' +
+          escapeHtml(label || "") +
+          "</span>" +
+          '<span class="bulletin-schedule-time">' +
+          escapeHtml(time || "") +
+          "</span>" +
+          "</li>"
+        );
+      })
+      .join("");
+    return items ? '<ul class="bulletin-schedule">' + items + "</ul>" : "";
+  }
+
+  function bulletinHtml(notice, lang) {
+    var b = notice && notice.bulletin;
+    if (!b || typeof b !== "object") return "";
+    var issue = lang === "en" ? b.issueEn || b.issueKo : b.issueKo || b.issueEn;
+    var date = lang === "en" ? b.dateEn || b.dateKo : b.dateKo || b.dateEn;
+    var churchKo = b.churchKo || "";
+    var churchEn = b.churchEn || "";
+    var occasionKo = b.occasionKo || "";
+    var occasionEn = b.occasionEn || "";
+    var themeRef = lang === "en" ? b.themeRefEn || b.themeRefKo : b.themeRefKo || b.themeRefEn;
+    var orderTitle = lang === "en" ? b.orderTitleEn || b.orderTitleKo : b.orderTitleKo || b.orderTitleEn;
+    var wordTitle = lang === "en" ? b.wordTitleEn || b.wordTitleKo : b.wordTitleKo || b.wordTitleEn;
+    var wordRef = lang === "en" ? b.wordRefEn || b.wordRefKo : b.wordRefKo || b.wordRefEn;
+    var frontLabel = lang === "en" ? "Front" : "앞면";
+    var backLabel = lang === "en" ? "Back" : "뒷면";
+    var pillars = Array.isArray(b.pillars)
+      ? b.pillars
+          .map(function (name) {
+            return escapeHtml(name);
+          })
+          .filter(Boolean)
+          .join(" · ")
+      : "";
+    var phoneHref = String(b.phone || "").replace(/[^\d+]/g, "");
+    var email = String(b.email || "").trim();
+    var instagram = String(b.instagram || "").trim();
+    var instagramHref = "https://www.instagram.com/gcpc.seattle";
+
+    var contactLines = [];
+    if (b.address) {
+      contactLines.push("<li>" + escapeHtml(b.address) + "</li>");
+    }
+    if (b.phone) {
+      contactLines.push(
+        "<li>" +
+          (phoneHref
+            ? '<a href="tel:' + escapeHtml(phoneHref) + '">' + escapeHtml(b.phone) + "</a>"
+            : escapeHtml(b.phone)) +
+          "</li>"
+      );
+    }
+    if (email) {
+      contactLines.push(
+        "<li><a href=\"mailto:" +
+          escapeHtml(email) +
+          '">' +
+          escapeHtml(email) +
+          "</a></li>"
+      );
+    }
+    if (instagram) {
+      contactLines.push(
+        "<li>Instagram: <a href=\"" +
+          instagramHref +
+          '" rel="noopener noreferrer">' +
+          escapeHtml(instagram) +
+          "</a></li>"
+      );
+    }
+
+    return (
+      '<div class="bulletin">' +
+      '<section class="bulletin-face bulletin-front" aria-label="' +
+      escapeHtml(frontLabel) +
+      '">' +
+      '<p class="bulletin-face-label">' +
+      escapeHtml(frontLabel) +
+      "</p>" +
+      '<p class="bulletin-kicker">' +
+      '<span>' +
+      escapeHtml(issue || "") +
+      (date ? " · " + escapeHtml(date) : "") +
+      "</span>" +
+      (pillars ? '<span class="bulletin-pillars">' + pillars + "</span>" : "") +
+      "</p>" +
+      (churchKo ? '<p class="bulletin-church-ko">' + escapeHtml(churchKo) + "</p>" : "") +
+      (churchEn ? '<p class="bulletin-church-en">' + escapeHtml(churchEn) + "</p>" : "") +
+      '<p class="bulletin-occasion">' +
+      escapeHtml(lang === "en" ? occasionEn || occasionKo : occasionKo || occasionEn) +
+      "</p>" +
+      (occasionKo && occasionEn && occasionKo !== occasionEn
+        ? '<p class="bulletin-occasion-sub">' +
+          escapeHtml(lang === "en" ? occasionKo : occasionEn) +
+          "</p>"
+        : "") +
+      (b.themeKo
+        ? '<blockquote class="bulletin-theme"><p>' +
+          escapeHtml(b.themeKo) +
+          "</p>" +
+          (themeRef ? "<cite>" + escapeHtml(themeRef) + "</cite>" : "") +
+          "</blockquote>"
+        : "") +
+      (orderTitle ? '<h3 class="visually-hidden">' + escapeHtml(orderTitle) + "</h3>" : "") +
+      bulletinOrderHtml(b.order, lang) +
+      '<div class="bulletin-word">' +
+      (wordTitle ? "<h3>" + escapeHtml(wordTitle) + "</h3>" : "") +
+      (b.wordKo ? "<p>" + escapeHtml(b.wordKo) + "</p>" : "") +
+      (b.wordLine2Ko ? "<p>" + escapeHtml(b.wordLine2Ko) + "</p>" : "") +
+      (wordRef ? "<cite>" + escapeHtml(wordRef) + "</cite>" : "") +
+      "</div>" +
+      (b.pastor ? '<p class="bulletin-pastor">' + escapeHtml(b.pastor) + "</p>" : "") +
+      (b.doxology ? '<p class="bulletin-doxology">' + escapeHtml(b.doxology) + "</p>" : "") +
+      "</section>" +
+      '<section class="bulletin-face bulletin-back" aria-label="' +
+      escapeHtml(backLabel) +
+      '">' +
+      '<p class="bulletin-face-label">' +
+      escapeHtml(backLabel) +
+      "</p>" +
+      '<div class="bulletin-back-grid">' +
+      '<div class="bulletin-col">' +
+      '<section class="bulletin-section">' +
+      bulletinHeading(b.newsTitleKo, b.newsTitleEn, lang) +
+      bulletinListHtml(b.news, lang, "bulletin-news") +
+      "</section>" +
+      '<section class="bulletin-section bulletin-next">' +
+      bulletinHeading(b.nextPrayerTitleKo, b.nextPrayerTitleEn, lang) +
+      (b.nextPrayerName ? "<p>" + escapeHtml(b.nextPrayerName) + "</p>" : "") +
+      "</section>" +
+      '<section class="bulletin-section">' +
+      bulletinHeading(b.contactTitleKo, b.contactTitleEn, lang) +
+      (contactLines.length ? '<ul class="bulletin-contact">' + contactLines.join("") + "</ul>" : "") +
+      "</section>" +
+      "</div>" +
+      '<div class="bulletin-col">' +
+      '<section class="bulletin-section">' +
+      bulletinHeading(b.scheduleTitleKo, b.scheduleTitleEn, lang) +
+      bulletinScheduleHtml(b.schedule, lang) +
+      "</section>" +
+      '<section class="bulletin-section">' +
+      bulletinHeading(b.prayerTitleKo, b.prayerTitleEn, lang) +
+      bulletinListHtml(b.prayer, lang, "bulletin-prayer") +
+      "</section>" +
+      "</div>" +
+      "</div>" +
+      "</section>" +
+      "</div>"
+    );
+  }
+
   var NOTICE_CATEGORIES = {
     notice: { ko: "공지", en: "Notice" },
     bulletin: { ko: "주보", en: "Bulletin" },
@@ -282,10 +509,15 @@
         escapeHtml(linkLabel) +
         "</a></p>"
       : "";
-    var imageHtml = noticePhotosHtml(notice, lang, title);
+    var typedBulletin = bulletinHtml(notice, lang);
+    var imageHtml = typedBulletin ? "" : noticePhotosHtml(notice, lang, title);
+    var bodyHtml = typedBulletin
+      ? typedBulletin
+      : '<div class="notice-body">' + formatBody(body) + "</div>";
     return (
       '<article class="notice-card' +
       (sample ? " notice-card-sample" : "") +
+      (typedBulletin ? " notice-card-bulletin" : "") +
       '">' +
       badge +
       meta +
@@ -293,9 +525,7 @@
       escapeHtml(title) +
       "</h2>" +
       imageHtml +
-      '<div class="notice-body">' +
-      formatBody(body) +
-      "</div>" +
+      bodyHtml +
       linkHtml +
       "</article>"
     );

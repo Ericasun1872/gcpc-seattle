@@ -721,6 +721,10 @@ html[data-season="winter"] .season-caption {
   max-width: 44rem;
 }
 
+.notice-list:has(.notice-card-bulletin) {
+  max-width: 54rem;
+}
+
 .notice-kind {
   font-weight: 700;
   color: var(--navy);
@@ -810,6 +814,250 @@ html[data-season="winter"] .season-caption {
 
 .notice-link {
   margin: 1rem 0 0;
+}
+
+.bulletin {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.bulletin-face {
+  background:
+    linear-gradient(180deg, rgba(255, 252, 247, 0.92), var(--paper) 38%),
+    var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.05rem 1.1rem 1.2rem;
+}
+
+.bulletin-face-label {
+  margin: 0 0 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.bulletin-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 0.85rem;
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.bulletin-pillars {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+
+.bulletin-church-ko {
+  margin: 0;
+  text-align: center;
+  font-family: var(--title-gothic);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+}
+
+.bulletin-church-en {
+  margin: 0.15rem 0 0.7rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.bulletin-occasion {
+  margin: 0;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.bulletin-occasion-sub {
+  margin: 0.2rem 0 0.85rem;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+}
+
+.bulletin-theme {
+  margin: 0 auto 1rem;
+  max-width: 28rem;
+  padding: 0;
+  border: 0;
+  text-align: center;
+}
+
+.bulletin-theme p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--navy);
+}
+
+.bulletin-theme cite,
+.bulletin-word cite {
+  display: block;
+  margin-top: 0.35rem;
+  font-style: normal;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.bulletin-order {
+  list-style: none;
+  margin: 0;
+  padding: 0.15rem 0 0.35rem;
+}
+
+.bulletin-order li {
+  display: grid;
+  gap: 0.05rem;
+  text-align: center;
+  padding: 0.48rem 0.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.bulletin-order li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.bulletin-order-primary {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.bulletin-order-secondary {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.bulletin-word {
+  margin: 1rem auto 0;
+  max-width: 26rem;
+  text-align: center;
+}
+
+.bulletin-word h3 {
+  margin: 0 0 0.4rem;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+.bulletin-word p {
+  margin: 0;
+  font-family: var(--serif);
+}
+
+.bulletin-pastor,
+.bulletin-doxology {
+  margin: 0.85rem 0 0;
+  text-align: center;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.bulletin-doxology {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
+.bulletin-back-grid {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.bulletin-section h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.55rem;
+  margin: 0 0 0.45rem;
+  padding-bottom: 0.28rem;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  color: var(--navy);
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.bulletin-h-en {
+  font-family: var(--font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+
+.bulletin-news,
+.bulletin-prayer,
+.bulletin-contact {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.bulletin-news li,
+.bulletin-prayer li,
+.bulletin-contact li {
+  margin: 0 0 0.45rem;
+}
+
+.bulletin-next p {
+  margin: 0;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.bulletin-schedule {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bulletin-schedule li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem 0.85rem;
+  padding: 0.28rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.bulletin-schedule-label {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.bulletin-schedule-time {
+  color: var(--muted);
+  text-align: right;
+}
+
+@media (min-width: 44rem) {
+  .bulletin-back-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 1.3rem 1.5rem;
+    align-items: start;
+  }
+
+  .bulletin-kicker {
+    align-items: baseline;
+  }
 }
 
 .links-row {
