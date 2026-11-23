@@ -12,7 +12,7 @@ Change `js/church.js` only. Do not invent parking, doors, kids ministry, phone, 
 
 ## Add a notice
 
-Edit `data/notices.json`. Set `category` to `notice`, `bulletin`, or `event`. Delete any labeled sample before publishing real church news. Do not invent posts. Optional `link` is http/https only. Optional `image` or `images` are site-relative paths under `img/` (jpg/png/webp/gif).
+Edit `data/notices.json`. Set `category` to `notice`, `bulletin`, or `event`. Delete any labeled sample before publishing real church news. Do not invent posts. Optional `link` is http/https only. Optional `bulletin` object renders a typed front/back 주보 (readable text, not phone photos). Optional `image` or `images` are site-relative paths under `img/` (jpg/png/webp/gif) for a later clean scan only.
 
 ## Sermons from YouTube
 
