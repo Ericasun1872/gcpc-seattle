@@ -4,8 +4,14 @@
   "playlistId": "UUjffs0ZHxlv9bitLbmEolVQ",
   "channel": "https://www.youtube.com/@gcpc.seattle",
   "source": "youtube-rss-playlist",
-  "fetchedAt": "2026-11-14T12:16:07Z",
+  "fetchedAt": "2026-11-25T15:44:04Z",
   "videos": [
+    {
+      "id": "wMB7QvcY84E",
+      "title": "사마리아 나병환자의 감사ㅣ누가복음 17:11-19ㅣ시애틀주은혜교회",
+      "date": "2026-11-25",
+      "url": "https://www.youtube.com/watch?v=wMB7QvcY84E"
+    },
     {
       "id": "XjxdTh3Q5xw",
       "title": "세 번의 절기, 세 번의 감사 ㅣ 출애굽기 23: 14-16 ㅣ성낙규목사",
@@ -89,12 +95,6 @@
       "title": "시애틀 주은혜교회 중심구절 (고린도전서 15:10)",
       "date": "2026-09-21",
       "url": "https://www.youtube.com/watch?v=dETW0EK2L5c"
-    },
-    {
-      "id": "Yioh1sR3ZdA",
-      "title": "시애틀 주은혜교회를 위한 기도 🙏",
-      "date": "2026-09-20",
-      "url": "https://www.youtube.com/watch?v=Yioh1sR3ZdA"
     }
   ]
 }
